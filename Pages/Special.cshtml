@@ -1,0 +1,10 @@
+@page
+<h2>Special</h2>
+<p>This is a special Razor page that also uses a server-side Blazor component.</p>
+
+<h3>Counter</h3>
+@(await Html.RenderComponentAsync<Counter>(RenderMode.ServerPrerendered))
+
+@section scripts {
+    <script src="~/_framework/blazor.server.js"></script>
+}
