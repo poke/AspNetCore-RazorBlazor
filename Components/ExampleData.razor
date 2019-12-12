@@ -1,0 +1,51 @@
+@using RazorBlazor.Models
+@inject TestService service
+@using Microsoft.Extensions.Logging
+@inject ILogger<ExampleData> logger
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in data)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" @onclick="LoadItems">Load items</button>
+
+<div>
+    <h3>Add new item</h3>
+    <input type="text" @bind="inputValue" />
+    <button class="btn btn-primary" @onclick="AddItem">Add item</button>
+</div>
+
+@code {
+    IList<Example> data = Array.Empty<Example>();
+    string inputValue;
+
+    async Task LoadItems()
+    {
+        data = await service.GetDataAsync();
+    }
+
+    async Task AddItem()
+    {
+        await service.AddDataAsync(inputValue);
+        inputValue = "";
+    }
+
+    protected override void OnInitialized()
+    {
+        logger.LogInformation("Initialized");
+    }
+}

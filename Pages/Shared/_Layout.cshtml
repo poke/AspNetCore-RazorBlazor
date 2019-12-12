@@ -12,6 +12,9 @@
         header > * {
             margin: 1rem 1rem;
         }
+        .navlink.active {
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -20,6 +23,9 @@
         <strong>Example web application</strong>
         <a asp-page="/Index">Index</a>
         <a asp-page="/Special">Special</a>
+        <a asp-page="/Routed">Routed</a>
+        <a asp-page="/Routed" asp-route-id="Foo">Routed Foo</a>
+        <a asp-page="/Routed" asp-route-id="Bar">Routed Bar</a>
     </header>
 
     <main>

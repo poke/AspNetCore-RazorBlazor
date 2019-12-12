@@ -1,0 +1,26 @@
+@page "/Routed"
+@page "/Routed/{Id}"
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.Extensions.Logging
+@inject ILogger<RoutedPage> logger
+@inherits OwningComponentBase<TestService>
+
+<h3>Routed page @Id</h3>
+
+<ul>
+    <li><NavLink class="navlink" href="/Routed/Foo">Foo</NavLink></li>
+    <li><NavLink class="navlink" href="/Routed/Bar">Bar</NavLink></li>
+</ul>
+
+<ExampleData />
+
+@code {
+    [Parameter]
+    public string Id
+    { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        logger.LogInformation("Parameters set: {Id}", Id);
+    }
+}
